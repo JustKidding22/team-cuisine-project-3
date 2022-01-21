@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import RestaurantItem from '../RestaurantItem';
+import React, { useEffect, useState } from "react";
+import RestaurantItem from "../RestaurantItem";
 // import { useStoreContext } from '../../utils/GlobalState';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+} from "reactstrap";
 // import { idbPromise } from '../../utils/helpers';
 
 function RestaurantList() {
-
   /*let [restaurantsArray, setRestaurantsArray] = useState([{
     restaurant_name: 'OhZone', restaurant_phone: '(240) 844-1198', restaurant_website: 'http://www.misterdwash.wix.com/ohzonelounge-', hours: 'Mon-Thu: 10am-2am Fri-Sun: 10am-3am', price_range: '$', restaurant_id: 3890038376985698
 
@@ -20,7 +26,7 @@ function RestaurantList() {
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 0
+    maximumAge: 0,
   };
 
   function success(pos) {
@@ -28,21 +34,24 @@ function RestaurantList() {
 
     let sampleRestaurantArray = [];
 
-    fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
-      "method": "GET",
-      "headers": {
-        "x-api-key": "1f00f8bbe4a1ee9522f0cb87e15b93d6"
+    fetch(
+      `https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`,
+      {
+        method: "GET",
+        headers: {
+          "x-api-key": "f8025eacddd70dab3a1934a76a45de26",
+        },
       }
-    })
-      .then(response => response.json())
-      .then(restaurantData => {
-        restaurantData.data.forEach(restaurant => {
+    )
+      .then((response) => response.json())
+      .then((restaurantData) => {
+        restaurantData.data.forEach((restaurant) => {
           sampleRestaurantArray.push(restaurant);
         });
 
         setRestaurantsArray(sampleRestaurantArray);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }
@@ -53,13 +62,11 @@ function RestaurantList() {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success, error, options);
-  }, [])
+  }, []);
 
-
-  console.log('restraurants array', restaurantsArray);
+  console.log("restraurants array", restaurantsArray);
 
   //   const { currentCategory } = state;
-
 
   //   useEffect(() => {
   //     if (data) {
@@ -96,21 +103,21 @@ function RestaurantList() {
     <div className="my-2">
       <h2>Choose from the following restaurants near you!</h2>
       {restaurantsArray.length ? (
-        <div className='flex-row'>
-          {restaurantsArray.map(restaurant => (
-             <RestaurantItem
+        <div className="flex-row">
+          {restaurantsArray.map((restaurant) => (
+            <RestaurantItem
               key={restaurant.restaurant_id}
               _id={restaurant.restaurant_id}
               address={restaurant.address.formatted}
               restaurant_name={restaurant.restaurant_name}
               price_range={restaurant.price_range}
-              cuisines = {restaurant.cuisines}
-              hours = {restaurant.hours}
-              phoneNumber = {restaurant.restaurant_phone}
-              website = {restaurant.restaurant_website}
+              cuisines={restaurant.cuisines}
+              hours={restaurant.hours}
+              phoneNumber={restaurant.restaurant_phone}
+              website={restaurant.restaurant_website}
             />
           ))}
-       </div>
+        </div>
       ) : (
         <h3>Please turn on geolocation or use the search bar above!</h3>
       )}
