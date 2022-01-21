@@ -5,6 +5,7 @@ import MenuItem from "../MenuItem";
 function Menu() {
   let [menuData, setMenuData] = useState([]);
   const { id } = useParams();
+  const apiKey = process.env.REACT_APP_API;
 
   useEffect(() => {
     let sampleMenuData = [];
@@ -12,7 +13,7 @@ function Menu() {
     fetch(`https://api.documenu.com/v2/restaurant/${id}/menuitems`, {
       method: "GET",
       headers: {
-        "x-api-key": "f8025eacddd70dab3a1934a76a45de26",
+        "x-api-key": apiKey,
       },
     })
       .then((response) => response.json())

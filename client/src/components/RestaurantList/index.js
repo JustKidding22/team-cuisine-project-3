@@ -23,6 +23,8 @@ function RestaurantList() {
 
   let [restaurantsArray, setRestaurantsArray] = useState([]);
 
+  const apiKey = process.env.REACT_APP_API;
+
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -39,7 +41,7 @@ function RestaurantList() {
       {
         method: "GET",
         headers: {
-          "x-api-key": "f8025eacddd70dab3a1934a76a45de26",
+          "x-api-key": apiKey,
         },
       }
     )
